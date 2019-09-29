@@ -9,7 +9,7 @@ This is the "vuex rich store" you want!
 module file:
 
 ``` javascript
-// store/modules/Welcome.js
+// store/modules/welcome.js
 
 export default {
   namespaced: true,
@@ -20,11 +20,11 @@ export default {
     }
   },
   actions: {
-    setText ({commit}) {
-      commit('setText')
+    setText ({commit}, payload) {
+      commit('setText', payload)
     },
-    toggleIsShown ({commit}) {
-      commit('toggleIsShown')
+    toggleIsShown ({commit}, payload) {
+      commit('toggleIsShown', payload)
     }
   },
   mutations: {
@@ -60,7 +60,7 @@ export default {
 module file:
 
 ``` javascript
-// store/modules/Welcome.js
+// store/modules/welcome.js
 
 export default {
   namespaced: true,
