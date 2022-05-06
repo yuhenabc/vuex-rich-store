@@ -17,7 +17,7 @@ import vuexRichStore, { createMutationsAndActions, createActions, createMutation
 
 ### How to simplify vuex module?
 
-#### way 1: use `vuexRichStore`
+#### WAY 1 : use `vuexRichStore`
 
 After using with `vuexRichStore`, your store module will have 5 more optional keys:
 
@@ -123,7 +123,7 @@ export default {
 }
 ```
 
-#### way 2: use `createMutationsAndActions` / `createActions` / `createMutations`
+#### WAY 2 : use `createMutationsAndActions` / `createActions` / `createMutations`
 
 This way is mostly adapt to the format that `Nuxt.js`'s store modules use.
 
