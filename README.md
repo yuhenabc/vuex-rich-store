@@ -67,7 +67,7 @@ export default {
 }
 ```
 
-and index file:
+index file:
 
 ```js
 // store/index.js
@@ -105,7 +105,7 @@ export default {
 }
 ```
 
-and index file:
+index file:
 
 ```js
 // store/index.js
