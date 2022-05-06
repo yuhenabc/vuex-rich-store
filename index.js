@@ -65,6 +65,42 @@ function _objectSpread2(target) {
   return target;
 }
 
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
 }
@@ -194,15 +230,12 @@ function vuexRichStore(storeObj) {
   if (_typeof(storeObj) !== 'object' || !storeObj['rich']) {
     return storeObj;
   } else {
-    var setterList = storeObj.setterList,
+    var rich = storeObj.rich,
+        setterList = storeObj.setterList,
         setterPrefix = storeObj.setterPrefix,
         toggleList = storeObj.toggleList,
-        togglePrefix = storeObj.togglePrefix;
-    delete storeObj['rich'];
-    delete storeObj['setterList'];
-    delete storeObj['setterPrefix'];
-    delete storeObj['toggleList'];
-    delete storeObj['togglePrefix'];
+        togglePrefix = storeObj.togglePrefix,
+        others = _objectWithoutProperties(storeObj, ["rich", "setterList", "setterPrefix", "toggleList", "togglePrefix"]);
 
     var _createMutationsAndAc = createMutationsAndActions({
       setterList: setterList,
@@ -211,22 +244,22 @@ function vuexRichStore(storeObj) {
       togglePrefix: togglePrefix
     }),
         _createMutationsAndAc2 = _slicedToArray(_createMutationsAndAc, 2),
-        mutations = _createMutationsAndAc2[0],
-        actions = _createMutationsAndAc2[1];
+        actions = _createMutationsAndAc2[0],
+        mutations = _createMutationsAndAc2[1];
 
-    if (storeObj.actions) {
-      storeObj.actions = _objectSpread2({}, storeObj.actions, {}, actions);
+    if (others.actions) {
+      others.actions = _objectSpread2({}, others.actions, {}, actions);
     } else {
-      storeObj.actions = actions;
+      others.actions = actions;
     }
 
-    if (storeObj.mutations) {
-      storeObj.mutations = _objectSpread2({}, storeObj.mutations, {}, mutations);
+    if (others.mutations) {
+      others.mutations = _objectSpread2({}, others.mutations, {}, mutations);
     } else {
-      storeObj.mutations = mutations;
+      others.mutations = mutations;
     }
 
-    return storeObj;
+    return others;
   }
 }
 

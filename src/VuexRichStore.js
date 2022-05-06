@@ -43,34 +43,29 @@ export default function vuexRichStore(storeObj) {
   if (typeof storeObj !== 'object' || !storeObj['rich']) {
     return storeObj
   } else {
-    let { setterList, setterPrefix, toggleList, togglePrefix } = storeObj
-    delete storeObj['rich']
-    delete storeObj['setterList']
-    delete storeObj['setterPrefix']
-    delete storeObj['toggleList']
-    delete storeObj['togglePrefix']
-    const [mutations, actions] = createMutationsAndActions({
+    const { rich, setterList, setterPrefix, toggleList, togglePrefix, ...others } = storeObj
+    const [actions, mutations] = createMutationsAndActions({
       setterList,
       setterPrefix,
       toggleList,
       togglePrefix,
     })
-    if (storeObj.actions) {
-      storeObj.actions = {
-        ...storeObj.actions,
+    if (others.actions) {
+      others.actions = {
+        ...others.actions,
         ...actions,
       }
     } else {
-      storeObj.actions = actions
+      others.actions = actions
     }
-    if (storeObj.mutations) {
-      storeObj.mutations = {
-        ...storeObj.mutations,
+    if (others.mutations) {
+      others.mutations = {
+        ...others.mutations,
         ...mutations,
       }
     } else {
-      storeObj.mutations = mutations
+      others.mutations = mutations
     }
-    return storeObj
+    return others
   }
 }
