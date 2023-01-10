@@ -1,12 +1,13 @@
 import babel from 'rollup-plugin-babel';
 
 export default {
-  input: 'src/VuexRichStore.js',
+  input: 'src/index.js',
   output: [
     {
       file: 'index.js',
       format: 'cjs',
-      name: 'VuexRichStore'
+      name: 'VuexRichStore',
+      exports: 'named',
     }
   ],
   plugins: [

@@ -4,7 +4,7 @@
   "description": "vuex rich store",
   "main": "index.js",
   "exports": {
-    "import": "./src/VuexRichStore.js",
+    "import": "./src/index.js",
     "require": "./index.js"
   },
   "scripts": {
