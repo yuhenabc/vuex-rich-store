@@ -6,7 +6,6 @@ export default {
     {
       file: 'index.js',
       format: 'cjs',
-      name: 'VuexRichStore',
       exports: 'named',
     }
   ],
