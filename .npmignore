@@ -7,4 +7,5 @@ bower.json
 rollup.config.js
 package-lock.json
 yarn.lock
+src
 test
